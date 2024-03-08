@@ -1,4 +1,4 @@
-# Laravel Starter template
+# Laravel Converters
 
 May be fork to be used on new laravel project
 
