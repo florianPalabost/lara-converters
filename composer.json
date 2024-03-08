@@ -1,14 +1,17 @@
 {
-    "name": "florian-palabost/laravel-template",
+    "name": "florian-palabost/laravel-converters",
     "type": "project",
-    "description": "Laravel template",
+    "description": "Laravel Converters",
     "keywords": [
-        "template",
-        "laravel"
+        "api",
+        "laravel",
+        "converters"
     ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "dedoc/scramble": "^0.8.6",
+        "doctrine/dbal": "^3.8",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
