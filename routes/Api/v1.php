@@ -17,5 +17,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('convert', [ConverterController::class, 'convert']);
+Route::get('files/{file}/convert', [ConverterController::class, 'convert']);
 Route::apiResource('files', CustomFileController::class);

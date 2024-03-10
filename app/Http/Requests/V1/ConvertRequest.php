@@ -28,7 +28,6 @@ class ConvertRequest extends FormRequest
     {
         // TODO: in / out formats
         return [
-            'file_id'       => ['required', 'uuid', 'exists:custom_files,id'],
             'output_format' => ['required', 'string', new Enum(OutputFileExtensionEnum::class)],
         ];
     }
