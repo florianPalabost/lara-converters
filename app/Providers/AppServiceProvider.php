@@ -4,6 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use Dedoc\Scramble\Scramble;
+use Dedoc\Scramble\Support\Generator\OpenApi;
+use Dedoc\Scramble\Support\Generator\SecurityScheme;
+use Dedoc\Scramble\Support\Generator\SecuritySchemes\OAuthFlow;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Health\Checks\Checks\DatabaseCheck;
@@ -37,5 +41,18 @@ class AppServiceProvider extends ServiceProvider
             DatabaseCheck::new(),
             EnvironmentCheck::new(),
         ]);
+
+        Scramble::extendOpenApi(function (OpenApi $openApi) {
+            $openApi->secure(
+                SecurityScheme::oauth2()
+                    ->flow('implicit', function (OAuthFlow $flow) {
+                        $flow
+                            ->authorizationUrl(route('google.redirect'))
+                            ->addScope('convert', 'convert files')
+                            ->addScope('write:files', 'modify files');
+                    })
+            );
+        });
+
     }
 }
