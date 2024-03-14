@@ -23,6 +23,6 @@ return static function (RectorConfig $rectorConfig): void {
         SetList::DEAD_CODE,
         SetList::EARLY_RETURN,
         SetList::CODE_QUALITY,
-        // \RectorLaravel\Set\LaravelSetList::LARAVEL_100,
+        \RectorLaravel\Set\LaravelSetList::LARAVEL_100,
     ]);
 };
