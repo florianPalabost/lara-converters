@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\V1;
 
 use App\Enums\OutputFileExtensionEnum;
+use App\Events\ConvertStatusUpdated;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\V1\ConvertRequest;
 use App\Jobs\ProcessConvertFile;
@@ -28,6 +29,10 @@ class ConverterController extends Controller
 
         // TODO use laravel-status to get job uuid
         $jobId = Queue::push(new ProcessConvertFile($file, $outputFormat));
+
+        event(new ConvertStatusUpdated([
+            'message' => 'Queueing job ' . $jobId,
+        ]));
 
         return new JsonResource([
             'job_id' => $jobId,

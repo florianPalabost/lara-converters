@@ -2,21 +2,19 @@
 
 declare(strict_types=1);
 
-namespace App\Converters\V1\Ifc;
+namespace App\Converters\V1\Gltf;
 
 use App\Converters\V1\Converter;
-use App\Converters\V1\Ifc\Strategies\IfcToGltfStrategy;
-use App\Converters\V1\Ifc\Strategies\IfcToIktStrategy;
+use App\Converters\V1\Gltf\Strategies\GltfToXktStrategy;
 use Exception;
 
-class IfcConverter extends Converter
+class GltfConverter extends Converter
 {
     public function convert(string $inputPath, string $outputPath, string $destExtension): bool
     {
         // guess strategy based on destination extension
         $strategy = match ($destExtension) {
-            'gltf'  => app(IfcToGltfStrategy::class),
-            'xkt'   => app(IfcToIktStrategy::class),
+            'xkt'   => app(GltfToXktStrategy::class),
             default => throw new Exception(static::class . ' > Invalid dest file extension'),
         };
 

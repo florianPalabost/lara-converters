@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Converters\V1;
 
 use App\Converters\V1\Docx\DocxConverter;
+use App\Converters\V1\Gltf\GltfConverter;
+use App\Converters\V1\Ifc\IfcConverter;
 use App\Converters\V1\Odt\OdtConverter;
 use App\Converters\V1\Pdf\PdfConverter;
 use App\Converters\V1\Png\PngConverter;
@@ -64,6 +66,17 @@ class ConverterFactory
     private static function getMappingInputOutputConverters(): array
     {
         return [
+            'ifc'  => [
+                'xkt' => [
+                    IfcConverter::class . ':gltf',
+                    GltfConverter::class . ':xkt',
+                ],
+            ],
+            'gltf' => [
+                'xkt' => [
+                    GltfConverter::class . ':xkt',
+                ],
+            ],
             'odt'  => [
                 'pdf'  => [
                     OdtConverter::class . ':docx',
