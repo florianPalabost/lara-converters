@@ -20,3 +20,8 @@ php artisan key:generate --ansi
 -   pint : vendor/bin/pint (--dirty for only modified)
 -   larastan : vendor/bin/phpstan
 -   rector: vendor/bin/rector process --config=CONFIG (--dry-run) [File(s)]
+
+## Requirements
+
+-   docker compose 2.26
+
