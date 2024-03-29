@@ -13,6 +13,7 @@ services:
       - 8080:80
     depends_on:
       - app
+      - db
 
   app:
     build:
@@ -31,7 +32,7 @@ services:
       - db
 
   db:
-    image: postgres:16.0-alpine
+    image: postgres:16
     container_name: app-converter-db
     restart: unless-stopped
     environment:

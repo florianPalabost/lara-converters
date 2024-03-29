@@ -2,6 +2,7 @@ FROM php:8.3-fpm-alpine
 
 LABEL maintainer="FP"
 
+# Set environment variables
 ENV UID=1000
 ENV GID=1000
 ENV USER=www
@@ -40,6 +41,8 @@ RUN addgroup \
 
 # Copy existing application directory contents
 COPY . /var/www/html
+
+COPY docker/php/conf.ini /usr/local/etc/php/conf.d/99-docker.ini
 
 # Copy existing application directory permissions
 COPY --chown=www:www . /var/www/html
