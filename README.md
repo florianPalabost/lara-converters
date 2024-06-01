@@ -25,3 +25,7 @@ php artisan key:generate --ansi
 
 -   docker compose 2.26
 
+## TODO
+rabbitmq
+or redis
+dockers

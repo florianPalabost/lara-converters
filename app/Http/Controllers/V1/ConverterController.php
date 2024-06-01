@@ -30,9 +30,9 @@ class ConverterController extends Controller
         // TODO use laravel-status to get job uuid
         $jobId = Queue::push(new ProcessConvertFile($file, $outputFormat));
 
-        event(new ConvertStatusUpdated([
-            'message' => 'Queueing job ' . $jobId,
-        ]));
+        // event(new ConvertStatusUpdated([
+        //     'message' => 'Queueing job ' . $jobId,
+        // ]));
 
         return new JsonResource([
             'job_id' => $jobId,

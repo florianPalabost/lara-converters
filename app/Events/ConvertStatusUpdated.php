@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Events;
 
+use App\Jobs\ProcessConvertFile;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Foundation\Events\Dispatchable;
@@ -13,14 +14,12 @@ class ConvertStatusUpdated
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    protected string $message;
-
     /**
      * Create a new event instance.
      */
-    public function __construct(array $payload)
+    public function __construct(protected ProcessConvertFile $job)
     {
-        $this->message = $payload['message'];
+
     }
 
     /**
@@ -31,7 +30,7 @@ class ConvertStatusUpdated
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('convert-status-updated'),
+            new PrivateChannel('job-progress'),
         ];
     }
 }
